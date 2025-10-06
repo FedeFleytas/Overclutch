@@ -22,10 +22,6 @@ body {
     scrollbar-width: thin;
 }
 
-selector {
-    cursor: url('img/bmwGta.png');
-}
-
 /*Header*/
 
 .nameLogoContainer{
@@ -93,7 +89,7 @@ li :hover{
     justify-content: space-around;
 }
 
-h2 {
+.lema {
     font-family: bebas;
     color: white;
     font-size: 80px;
@@ -107,6 +103,52 @@ h2 {
     margin-right: 100px;
 }
 
+.races {
+    color: white;
+}
+
+.carreras{
+    color: white;
+}
+
+.racing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.raceIn{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "class name time access track"
+    "class ubication time access track";
+}
+
+.classType {
+    grid-area: class;
+}
+
+.raceName {
+    grid-area: name;
+}
+
+.locate {
+    grid-area: ubication;
+}
+
+.time {
+    grid-area: time;
+}
+
+.access {
+    grid-area: access;
+}
+
 .trackImg{
+    grid-area: track;
     width: 300px;
 }

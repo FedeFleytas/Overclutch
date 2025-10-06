@@ -17,14 +17,12 @@ const innerpagesHTML = () => {
             newRace.innerHTML = `
             <div class="racing">
                 <div class="raceIn">
-                    <div>
-                        <p>${race.class}</p>
-                    </div>
+                    <p class="classType">${race.class}</p>
                     <h3 class="raceName">${race.name}</h2>
-                    <p>${race.ubication}</p>
-                    <p>${race.time}</p>
-                    <p>${race.access}</p>
-                    <img url="${race.track}" class="trackImg">
+                    <p class="locate">${race.ubication}</p>
+                    <p class="time">${race.time}</p>
+                    <p class="access">${race.access}</p>
+                    <img src="${race.img}" class="track">
                 </div>
             </div>
 
