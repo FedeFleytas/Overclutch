@@ -12,18 +12,13 @@
 }
 
 body {
-    background-image: url(img/littleSeoulNightBg.png);
-    background-size: cover;
+    background-color: black;
 }
 
 * {
     margin: 0;
     scrollbar-color: rgb(60, 0, 255) rgb(0, 0, 0);
     scrollbar-width: thin;
-}
-
-selector {
-    cursor: url('img/bmwGta.png');
 }
 
 /*Header*/
@@ -85,15 +80,19 @@ li :hover{
 
 .sectionInitial{
     margin-bottom: 200px;
+    background-image: url(img/littleSeoulNightBg.png);
+    background-size: cover;
+    background-position: 20px;
 }
 
 .intro {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding-bottom: 200px;
 }
 
-h2 {
+.lema {
     font-family: bebas;
     color: white;
     font-size: 80px;
@@ -107,6 +106,252 @@ h2 {
     margin-right: 100px;
 }
 
-.trackImg{
-    width: 300px;
+/*Races*/
+
+
+.raceContainer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: left;
+    padding: 0 0 50px 430px;
+}
+
+.raceTittle {
+    color: white;
+    font-family: bebas;
+    font-size: 40px;
+}
+
+.races {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.race {
+    width: 60%;
+}
+
+
+.racing {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: rgb(0, 0, 0);
+    border-left: 2px solid rgb(255, 255, 255);
+    border-right: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    animation: lines 5s infinite alternate;
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+    margin: 0 50px 50px 50px;
+    height: 120px;
+}
+
+.raceIn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(137, 3, 255), rgb(14, 0, 72));
+    animation: lines 2s infinite alternate;
+    border: 1px solid #6200ff;
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.raceCenter {
+    display: flex;
+    align-items: self-start;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.locateContainer {
+    display: flex;
+    
+}
+
+.raceRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.classType {
+    grid-area: class;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: bebas;
+    font-size: 20px;
+}
+
+.raceName {
+    font-size: 30px;
+    font-family: bebas;
+}
+
+.locate {
+    font-size: 20px;
+    font-family: bebas;
+}
+
+.time {
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: bebas;
+}
+
+.time::before {
+    content: "-";
+    padding-right: 10px;
+}
+
+.access {
+    display: flex;
+    text-align: center;
+    padding-left: 20px;
+    font-family: bebas;
+    font-size: 20px;
+}
+
+.track{
+    position: absolute;
+    transition: transform 2s; 
+    width: 100px;
+    height: auto;
+}
+
+.track:hover {
+    transform: scale(2);
+}
+
+.trackActive {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*Members*/
+
+.crewSection {
+    padding-bottom: 50px;
+}
+
+.profileContainer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: left;
+    padding: 50px 0 50px 430px;
+}
+
+.profileTittle {
+    color: white;
+    font-family: bebas;
+    font-size: 40px;
+    text-align: center;
+}
+
+.crewMembers {
+    color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    margin: 0 25rem 0 25rem;
+    border: 1px solid grey;
+    padding: 5rem 0 5rem 0;
+    background-image: url(img/gas.png);
+}
+
+.memberSquare {
+    width: 200px;
+    font-family: bebas;
+    border: 2px dotted;
+    padding: 1rem;
+}
+
+.number{
+    font-size: 40px;
+    color: #ff41e9;
+    filter: drop-shadow(0px 0px 20px rgb(225, 0, 255));
+}
+
+.nameMember {
+    font-size: 35px;
+}
+
+.car{
+    font-size: 20px;
+    color: #00a6ff;
+    filter: drop-shadow(0px 0px 20px rgb(0, 255, 255));
+}
+
+.buttonMember {
+    background: linear-gradient(to right, rgb(137, 3, 255), rgb(14, 0, 72));
+    border-radius: 10px solid;
+    color: white;
+    font-family: bebas;
+    font-size: 15px;
+    height: 30px;
+    width: 60px;
+    margin-top: 10px;
+}
+
+.screenImg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.469);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.buttonClose {
+    position: relative;
+    left: 655px;
+    background: none;
+    color: #ffffff;
+    filter: drop-shadow(0px 0px 20px rgb(255, 0, 195));
+    border-left: 2px solid rgb(255, 255, 255);
+    border-right: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    animation: lines 1s infinite alternate;
+    margin: 5px;
+}
+
+.memberImg {
+    position: relative;
+    z-index: 1;
+    background-color: black;
+    width: 1300px;
+    height: auto;
+}
+
+.none {
+    display: none;
+}
+
+/*keyframes*/
+
+@keyframes lines {
+    0% { border-color: #ff41e9; }
+    100% { border-color: #6200ff; }
 }
