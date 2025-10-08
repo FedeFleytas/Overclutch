@@ -349,6 +349,69 @@ li :hover{
     display: none;
 }
 
+/*Magazines*/
+
+.magazineSection {
+    padding-bottom: 50px;
+}
+
+.magazineContainer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: left;
+    padding: 50px 0 50px 420px;
+}
+
+.magazineTittle {
+    color: white;
+    font-family: bebas;
+    font-size: 40px;
+    text-align: center;
+}
+
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    margin: 40px auto;
+}
+
+.carouselWindow {
+    width: 600px;
+    overflow: hidden;
+    filter: drop-shadow(0px 0px 20px rgb(168, 168, 168));
+    border-left: 2px solid rgb(102, 0, 255);
+    border-right: 2px solid rgb(132, 0, 255);
+    border-radius: 20px;
+}
+
+.carouselSlider {
+    display: flex;
+    width: 300%; /* 100% x imagen */
+    transition: transform 1.5s ease-in-out;
+}
+
+.carouselItem {
+    width: 600px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.carouselControl {
+    background: none;
+    border-left: 2px solid rgb(255, 255, 255);
+    border-right: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 0 10px;
+}
+
 /*keyframes*/
 
 @keyframes lines {

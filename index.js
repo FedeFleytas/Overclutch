@@ -55,26 +55,6 @@ const initApp = () => {
 
 initApp();
 
-// let button = document.getElementById('buttonId');
-// let img = document.getElementById('imagen');
-// let close = document.getElementById('buttonClose')
-// let screen = document.getElementById('screenId')
-
-// button.addEventListener('click', () =>
-//     img.classList.toggle('none'),
-// )
-
-// button.addEventListener('click', () =>
-//     screen.classList.toggle('none'),
-// )
-
-// close.addEventListener('click', () =>
-//     screen.classList.toggle('none')
-// )
-
-// close.addEventListener('click', () =>
-//     img.classList.toggle('none')
-// )
 
 const buttons = document.querySelectorAll('.buttonMember');
 const screen = document.querySelector('.screenImg');
@@ -115,3 +95,39 @@ buttons.forEach(button => {
 closeButton.addEventListener('click', () => {
     toggleScreen(false);
 })
+
+
+
+
+
+const slider = document.querySelector('.carouselSlider');
+const items = document.querySelectorAll('.carouselItem');
+const prevButton = document.querySelector('.carouselControl.prev');
+const nextButton = document.querySelector('.carouselControl.next');
+
+let currentIndex = 0;
+const totalItems = items.length;
+const itemWidth = 100 / totalItems;
+function updateSlider() {
+    const offset = currentIndex * (100 / totalItems); 
+    
+    slider.style.transform = `translateX(-${offset}%)`;
+}
+
+nextButton.addEventListener('click', () => {
+    if (currentIndex < totalItems - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0; 
+    }
+    updateSlider();
+});
+
+
+prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+    }
+    updateSlider();
+});
