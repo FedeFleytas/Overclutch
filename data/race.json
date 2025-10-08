@@ -2,7 +2,7 @@
     {
         "id":1,
         "class":"A1",
-        "name": "ebisu",
+        "name": "Ebisu",
         "ubication": "Los Santos Vinewood Uphill",
         "time":"Viernes 23:00 Hub",
         "access":"Libre",
@@ -12,11 +12,11 @@
     {
         "id":2,
         "class":"B1",
-        "name": "ebisu",
+        "name": "Ebisu Extended",
         "ubication": "Los Santos Vinewood Uphill",
-        "time":"Viernes 23:00 Hub",
-        "access":"Libre",
-        "img":"../img/tracks/ebisu.png"
+        "time":"Anonimo",
+        "access":"Invitacion",
+        "img":"../img/tracks/extendedEbisu.png"
     }
 
 ]
