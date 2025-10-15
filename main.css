@@ -63,7 +63,7 @@ body {
     }
 
     input[type="range"] {
-        -webkit-appearance: none;
+        appearance: none;
         width: 100px;
         height: 4px;
         background: #7300ff;
