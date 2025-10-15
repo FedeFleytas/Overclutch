@@ -131,3 +131,101 @@ prevButton.addEventListener('click', () => {
     }
     updateSlider();
 });
+
+
+
+
+const songs = [
+        { title: "Boss - Lil Pump", src: "music/boss.mp3" },
+        { title: "Forza Freestyle - Rich Amiri", src: "music/FORZAFREESTYLE.mp3" }
+    ];
+
+let currentSong = 0;
+
+const music = document.getElementById('music');
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+const playPauseBtn = document.getElementById('playPause');
+const volumeControl = document.getElementById('volume');
+const equalizer = document.getElementById('equalizer');
+const title = document.getElementById('songTitle');
+
+let isPlaying = true;
+
+
+    function loadSong(index) {
+        const song = songs[index];
+        music.src = song.src;
+        title.textContent = song.title;
+        music.load();
+        music.play().catch(() => {
+            isPlaying = false;
+            playPauseBtn.textContent = '▶️';
+            equalizer.classList.add('paused');
+        });
+    }
+
+    window.addEventListener('load', () => {
+        music.volume = 0.1;
+        volumeControl.value = 0.1;
+        loadSong(currentSong);
+    });
+
+    window.addEventListener('load', () => {
+        music.volume = volumeControl.value;
+        music.play().catch(() => {
+            isPlaying = false;
+            playPauseBtn.textContent = '▶️';
+            equalizer.classList.add('paused');
+        });
+    });
+
+    document.addEventListener('click', () => {
+        if (!isPlaying) {
+            music.play();
+            playPauseBtn.textContent = '⏸️';
+            equalizer.classList.remove('paused');
+            isPlaying = true;
+        }
+    }, { once: true });
+
+    playPauseBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            music.pause();
+            playPauseBtn.textContent = '▶️';
+            equalizer.classList.add('paused');
+        } else {
+            music.play();
+            playPauseBtn.textContent = '⏸️';
+            equalizer.classList.remove('paused');
+        }
+        isPlaying = !isPlaying;
+    });
+
+    volumeControl.addEventListener('input', () => {
+        music.volume = volumeControl.value;
+    });
+
+
+    nextBtn.addEventListener('click', () => {
+        currentSong = (currentSong + 1) % songs.length;
+        loadSong(currentSong);
+        isPlaying = true;
+        playPauseBtn.textContent = '⏸️';
+        equalizer.classList.remove('paused');
+    });
+
+
+    prevBtn.addEventListener('click', () => {
+        currentSong = (currentSong - 1 + songs.length) % songs.length;
+        loadSong(currentSong);
+        isPlaying = true;
+        playPauseBtn.textContent = '⏸️';
+        equalizer.classList.remove('paused');
+    });
+
+
+    music.addEventListener('ended', () => {
+        currentSong = (currentSong + 1) % songs.length;
+        loadSong(currentSong);
+    });

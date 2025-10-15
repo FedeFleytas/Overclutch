@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://fedefleytas.github.io/Overclutch/img/bmwLogoGta.ico">
     <link rel="stylesheet" href="main.css">
-    <title>Overclutch</title>
+    <title>BLACKLIST</title>
 </head>
 <body>
+
+    <div class="musicBar">
+        <button id="prev" class="musicBtn">⏮️</button>
+        <button id="playPause" class="musicBtn">⏸️</button>
+        <button id="next" class="musicBtn">⏭️</button>
+        <div class="equalizer" id="equalizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <span id="songTitle"></span>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8">
+    </div>
+
+    <audio id="music" autoplay></audio>
 
     <header>
         <div class="nameLogoContainer">
@@ -14,9 +32,9 @@
         </div>
         <div class="ulContainer">
             <ul>
-                <li><a href="">Carreras</a></li>
-                <li><a href="">Crew</a></li>
-                <li><a href="">Revista</a></li>
+                <li><a href="#runId">Carreras</a></li>
+                <li><a href="#proId">Crew</a></li>
+                <li><a href="#magId">Revista</a></li>
                 <li><a href="">Join</a></li>
             </ul>
         </div>
@@ -31,7 +49,7 @@
         </section>
 
             <div class="raceContainer">
-                <h2 class="raceTittle">🏁Carreras Habilitadas</h2>
+                <h2 class="raceTittle" id="runId">🏁Carreras Habilitadas</h2>
             </div>
 
         <section class="races">
@@ -39,7 +57,7 @@
 
         <section class="crewSection">
             <div class="profileContainer">
-                <h3 class="profileTittle">🚦PERFILES</h3>
+                <h3 class="profileTittle" id="proId">🚦PERFILES</h3>
             </div>
             <div class="crewMembers">
                 <div class="memberSquare">
@@ -121,7 +139,7 @@
 
         <section class="magazineSection">
             <div class="magazineContainer">
-                <h3 class="magazineTittle">🎬BLACKLIST STREET MAG</h3>
+                <h3 class="magazineTittle" id="magId">🎬BLACKLIST STREET MAG</h3>
             </div>
             <div class="carouselContainer">
                 <button class="carouselControl prev">←</button>
@@ -136,6 +154,20 @@
                 
                 <button class="carouselControl next">→</button>
             </div>
+        </section>
+
+        <section class="blacklistContainer">
+
+            <div class="blackDivTittle">
+                <h3 class="blackTittle">👁‍🗨BLACKLIST</h3>
+            </div>
+
+            <div class="blackImg">
+                <img src="img/comingsoonTwo.png" alt="" class="commingSoon">
+            </div>
+
+
+
         </section>
     </main>
 

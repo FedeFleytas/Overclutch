@@ -6,7 +6,7 @@
         "ubication": "Los Santos Vinewood Uphill",
         "time":"Viernes 23:00 Hub",
         "access":"Libre",
-        "img":"../img/tracks/ebisu.png"
+        "img":"img/tracks/ebisu.png"
     },
 
     {
@@ -16,7 +16,7 @@
         "ubication": "Los Santos Vinewood Uphill",
         "time":"Anonimo",
         "access":"Invitacion",
-        "img":"../img/tracks/extendedEbisu.png"
+        "img":"img/tracks/extendedEbisu.png"
     }
 
 ]
