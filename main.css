@@ -1,14 +1,14 @@
 @font-face {
     font-family: "bebas";
-    src: url(fonts/Bebas_Neue/BebasNeue-Regular.ttf) format("truetype");
+    src: url(public/fonts/Bebas_Neue/BebasNeue-Regular.ttf) format("truetype");
 }
 @font-face {
     font-family: "roboto";
-    src: url(fonts/Roboto_Condensed/RobotoCondensed-VariableFont_wght.ttf) format("truetype");
+    src: url(public/fonts/Roboto_Condensed/RobotoCondensed-VariableFont_wght.ttf) format("truetype");
 }
 @font-face {
     font-family: "saira";
-    src: url(fonts/Saira_Stencil_One/SairaStencilOne-Regular.ttf) format("truetype");
+    src: url(public/fonts/Saira_Stencil_One/SairaStencilOne-Regular.ttf) format("truetype");
 }
 
 body {
@@ -375,7 +375,7 @@ li :hover{
     gap: 3rem;
     margin: 0 10rem 0 10rem;
     padding: 5rem 0 5rem 0;
-    background-image: url(img/gas.png);
+    background-image: url(public/img/gas.png);
 }
 
 .memberSquare {
