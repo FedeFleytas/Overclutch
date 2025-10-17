@@ -54,6 +54,27 @@
 
         <section class="races">
         </section>
+        <div class="createContainer">
+            <button class="buttonCreate" id="abrirLoginBtn">CREAR CARRERA</button>
+        </div>
+        <div id="loginModal" style="display: none;">
+            <h2>Login de Administrador</h2>
+            <input type="email" id="adminEmail" placeholder="Correo electrónico">
+            <input type="password" id="adminPassword" placeholder="Contraseña">
+            <button id="loginBtn">Logear</button>
+            <p id="mensajeError" style="color:red;"></p>
+        </div>
+
+        <div id="crearCarreraModal" style="display:none; /* o usa clases CSS */">
+            <h2>Creador de Carrera</h2>
+            <input type="text" id="nombreCarrera" placeholder="Nombre del Carrera">
+            <input type="text" id="precioCarrera" placeholder="Precio">
+            <input type="text" id="precioCarrera" placeholder="Precio">
+            <input type="number" id="precioCarrera" placeholder="Precio">
+            <input type="file" accept="image/png, image/jpeg" id="precioCarrera">
+            <button id="guardarCarreraBtn">Guardar Carrera</button>
+            <p id="mensajeExito" style="color:green;"></p>
+        </div>
 
         <section class="crewSection">
             <div class="profileContainer">

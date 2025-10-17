@@ -343,6 +343,27 @@ li :hover{
     align-items: center;
 }
 
+.createContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonCreate {
+    font-family: bebas;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 0, 208);
+    border-radius: 20px;
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+    animation: lines 1s infinite alternate;
+}
+
+.buttonCreate:hover {
+    color: #000000;
+    background-color: white;
+}
 
 /*Members*/
 

@@ -1,6 +1,5 @@
 [
     {
-        "id":1,
         "class":"B1",
         "name": "Ebisu",
         "ubication": "Los Santos Vinewood Uphill",
@@ -10,7 +9,6 @@
     },
 
     {
-        "id":1,
         "class":"B1",
         "name": "Ebisu Extended",
         "ubication": "Los Santos Vinewood Uphill",
@@ -19,7 +17,6 @@
         "img":"img/tracks/extendedEbisu.png"
     },
         {
-        "class":"B1",
         "name": "Ebisu Extended",
         "ubication": "Los Santos Vinewood Uphill",
         "time":"Anonimo",
@@ -27,7 +24,6 @@
         "img":"img/tracks/extendedEbisu.png"
     },
         {
-        "id":1,
         "class":"B1",
         "name": "Ebisu Extended",
         "ubication": "Los Santos Vinewood Uphill",
