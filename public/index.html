@@ -57,7 +57,7 @@
         <div class="createContainer">
             <button class="buttonCreate" id="abrirLoginBtn">CREAR CARRERA</button>
         </div>
-        <div id="loginModal" style="display: none;">
+        <div id="loginModal">
             <h2>Login de Administrador</h2>
             <input type="email" id="adminEmail" placeholder="Correo electrónico">
             <input type="password" id="adminPassword" placeholder="Contraseña">
@@ -65,13 +65,13 @@
             <p id="mensajeError" style="color:red;"></p>
         </div>
 
-        <div id="crearCarreraModal" style="display:none; /* o usa clases CSS */">
+        <div id="crearCarreraModal">
             <h2>Creador de Carrera</h2>
-            <input type="text" id="nombreCarrera" placeholder="Nombre del Carrera">
-            <input type="text" id="precioCarrera" placeholder="Precio">
-            <input type="text" id="precioCarrera" placeholder="Precio">
-            <input type="number" id="precioCarrera" placeholder="Precio">
-            <input type="file" accept="image/png, image/jpeg" id="precioCarrera">
+            <input type="text" id="claseCarrera" placeholder="Clase">
+            <input type="text" id="nombreCarrera" placeholder="Nombre de la carrera">
+            <input type="text" id="ubicationCarrera" placeholder="Ubicacion">
+            <input type="number" id="timeCarrera" placeholder="hora de la carrera">
+            <input type="file" accept="image/png, image/jpeg" id="imagenCarreraInput">
             <button id="guardarCarreraBtn">Guardar Carrera</button>
             <p id="mensajeExito" style="color:green;"></p>
         </div>
@@ -197,7 +197,8 @@
     </footer>
 
 
-    <script src="index.js"></script>
+
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
 
