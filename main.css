@@ -182,7 +182,7 @@ li :hover{
 
 .sectionInitial{
     margin-bottom: 200px;
-    background-image: url(img/littleSeoulNightBg.png);
+    background-image: url(public/img/littleSeoulNightBg.png);
     background-size: cover;
     background-position: 20px;
 }
