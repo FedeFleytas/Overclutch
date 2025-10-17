@@ -15,24 +15,24 @@ const innerpagesHTML = () => {
             newRace.classList.add('race');
             newRace.dataset.id = dataRace.id;
             newRace.innerHTML = `
-            <div class="racing">
+            ${race.id ? `<div class="racing">
                 <div class="raceIn">
-                    <p class="classType">${race.class}</p>
+                    ${race.class ? `<p class="classType">${race.class}</p>` : ""}
                 </div>
                 <div class="raceCenter">
-                    <h3 class="raceName">${race.name}</h2>
+                    ${race.name ? `<h3 class="raceName">${race.name}</h2>` : ""}
                     <div class="locateContainer">
-                        <p class="locate">${race.ubication}</p>
-                        <p class="time">${race.time}</p>
+                        ${race.ubication ? `<p class="locate">${race.ubication}</p>` : ""}
+                        ${race.time ? `<p class="time">${race.time}</p>` : ""}
                     </div>
                 </div>
                 <div class="raceFinal">
-                    <p class="access">${race.access}</p>
+                    ${race.access ? `<p class="access">${race.access}</p>` : ""}
                 </div>
                 <div class="raceRight" >
-                    <img src="${race.img}" class="track" id="trackId">
+                    ${race.img ? `<img src="${race.img}" class="track" id="trackId">` : ""}
                 </div>
-            </div>
+            </div>` : ""}
 
             `;
             innerPages.appendChild(newRace)
