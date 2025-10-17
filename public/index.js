@@ -235,20 +235,98 @@ let isPlaying = true;
 
 
 
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth"; // Necesitas importar getAuth
+import { getFirestore } from "firebase/firestore"; // Necesitas importar getFirestore
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCkhN5e6zka2JFS3ZO5gDKZSATGI51JW5U",
     authDomain: "blacklist-oc.firebaseapp.com",
     projectId: "blacklist-oc",
-    storageBucket: "blacklist-oc.firebasestorage.app",
+    storageBucket: "blacklist-oc.firebaseapp.com",
     messagingSenderId: "784801482803",
     appId: "1:784801482803:web:677d09879668d53a883b46"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Inicializa Auth y Firestore usando las funciones "get"
+const auth = getAuth(app); 
+const db = getFirestore(app);
+
+const loginModal = document.getElementById('loginModal');
+const crearCarreraModal = document.getElementById('crearCarreraModal');
+const abrirLoginBtn = document.getElementById('abrirLoginBtn');
+const loginBtn = document.getElementById('loginBtn');
+const guardarCarreraBtn = document.getElementById('guardarCarreraBtn');
+const mensajeError = document.getElementById('mensajeError');
+
+abrirLoginBtn.addEventListener('click', () => {
+    loginModal.style.display = 'block';
+    crearCarreraModal.style.display = 'none'; // Asegúrate de que el otro esté oculto
+    mensajeError.textContent = '';
+});
+
+loginBtn.addEventListener('click', async () => {
+    const email = document.getElementById('adminEmail').value;
+    const password = document.getElementById('adminPassword').value;
+    mensajeError.textContent = '';
+
+    try {
+        // 1. Logear al usuario
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        
+        // 2. Verificar si el UID del usuario está en la colección de 'administradores'
+        const adminDocRef = db.collection('userAdmin').doc(user.uid);
+        const doc = await adminDocRef.get();
+
+        if (doc.exists) {
+            // Es administrador, procede a abrir la ventana de creación
+            loginModal.style.display = 'none';
+            crearCarreraModal.style.display = 'block';
+            console.log("Login de Admin exitoso.");
+        } else {
+            // No es administrador, cierra sesión y notifica
+            await auth.signOut();
+            mensajeError.textContent = 'Acceso denegado: No es un administrador.';
+        }
+    } catch (error) {
+        mensajeError.textContent = `Error de Login: ${error.message}`;
+        console.error("Error de login:", error);
+    }
+});
+
+
+guardarCarreraBtn.addEventListener('click', async () => {
+    const nombre = document.getElementById('nombreCarrera').value;
+    const precio = parseFloat(document.getElementById('precioCarrera').value);
+    const mensajeExito = document.getElementById('mensajeExito');
+    mensajeExito.textContent = '';
+
+    if (!nombre || isNaN(precio)) {
+        mensajeExito.textContent = 'Por favor, introduce un nombre y un precio válido.';
+        return;
+    }
+
+    try {
+        // Añade el documento a la colección 'Carreras'
+        await db.collection('Carreras').add({
+            nombre: nombre,
+            precio: precio,
+            fechaCreacion: new Date()
+        });
+
+        mensajeExito.textContent = `Carrera "${nombre}" guardado con éxito!`;
+        // Opcional: limpiar los campos
+        document.getElementById('nombreCarrera').value = '';
+        document.getElementById('precioCarrera').value = '';
+
+    } catch (error) {
+        mensajeExito.textContent = `Error al guardar: ${error.message}`;
+        console.error("Error al guardar el carrera:", error);
+    }
+});
