@@ -229,3 +229,26 @@ let isPlaying = true;
         currentSong = (currentSong + 1) % songs.length;
         loadSong(currentSong);
     });
+
+
+
+
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCkhN5e6zka2JFS3ZO5gDKZSATGI51JW5U",
+    authDomain: "blacklist-oc.firebaseapp.com",
+    projectId: "blacklist-oc",
+    storageBucket: "blacklist-oc.firebasestorage.app",
+    messagingSenderId: "784801482803",
+    appId: "1:784801482803:web:677d09879668d53a883b46"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
