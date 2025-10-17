@@ -137,7 +137,7 @@ prevButton.addEventListener('click', () => {
 
 const songs = [
         { title: "Boss - Lil Pump", src: "music/boss.mp3" },
-        { title: "Forza Freestyle - Rich Amiri", src: "music/FORZAFREESTYLE.mp3" }
+        { title: "Forza Freestyle - Rich Amiri", src: "music/forza.mp3" }
     ];
 
 let currentSong = 0;
