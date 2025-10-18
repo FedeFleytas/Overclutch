@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js';
-import { getFirestore, doc, getDoc, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
+import { getFirestore, doc, getDoc, getDocs, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,37 +24,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let innerPages = document.querySelector('.races');
 
-    let dataRace = [];
-
-    const innerpagesHTML = () => {
+    const innerpagesHTML = (data) => {
 
         innerPages.innerHTML = '';
-        
 
-        if (dataRace.length > 0) {
-            dataRace.forEach(race => {
+        const ONE_DAY_MS = 5 * 60 * 60 * 1000;
+        const now = new Date().getTime();
+
+        if (data.length > 0) {
+            data.forEach(race => {
                 let newRace = document.createElement('div');
                 newRace.classList.add('race');
-                newRace.dataset.id = dataRace.id;
+                newRace.dataset.id = race.id;
+
+                let newTagHTML = '';
+                            
+                // Lógica de cálculo de tiempo
+                if (race.fechaCreacion) { 
+                    const creationTime = race.fechaCreacion.toDate().getTime(); 
+                    if (now - creationTime <= ONE_DAY_MS) {
+                        newTagHTML = '<span class="new-tag">NEW</span>'; 
+                    }
+                }
+
                 newRace.innerHTML = `
                 ${race.id ? `<div class="racing">
                     <div class="raceIn">
-                        ${race.class ? `<p class="classType">${race.class}</p>` : ""}
+                        ${race.clase ? `<p class="classType">${race.clase}</p>` : ""}
                     </div>
                     <div class="raceCenter">
-                        ${race.name ? `<h3 class="raceName">${race.name}</h2>` : ""}
+                        ${race.nombre ? `<h3 class="raceName">${race.nombre}</h2>` : ""}
                         <div class="locateContainer">
-                            ${race.ubication ? `<p class="locate">${race.ubication}</p>` : ""}
-                            ${race.time ? `<p class="time">${race.time}</p>` : ""}
+                            ${race.ubicacion ? `<p class="locate">${race.ubicacion}</p>` : ""}
+                            ${race.hora ? `<p class="time">${race.hora}</p>` : ""}
                         </div>
                     </div>
                     <div class="raceFinal">
-                        ${race.access ? `<p class="access">${race.access}</p>` : ""}
+                        ${race.acceso ? `<p class="access">${race.acceso}</p>` : ""}
                     </div>
                     <div class="raceRight" >
                         ${race.img ? `<img src="${race.img}" class="track" id="trackId">` : ""}
                     </div>
-                </div>` : ""}
+                ${newTagHTML}</div>` : ""}
 
                 `;
                 innerPages.appendChild(newRace)
@@ -62,21 +73,35 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
     }
-    innerpagesHTML();
 
 
 
-    const initApp = () => {
-        fetch('data/race.json')
-        .then(response => response.json())
-        .then(data => {
-            dataRace = data;
-            innerpagesHTML();
-        });
-    };
+async function loadRacesFromFirestore() {
+    try {
+        const q = collection(db, "carreras");
+        const querySnapshot = await getDocs(q);
+        
+        // 3. Mapear los documentos al formato de array
+        const dataRace = querySnapshot.docs.map(doc => ({
+            id: doc.id, 
+            ...doc.data() 
+        }));
 
-    initApp();
+        console.log("Datos recibidos de Firestore:", dataRace);
+        
+        // 4. Llama a la función de renderizado con los datos obtenidos
+        // 🛑 CORRECCIÓN: Llamamos a innerpagesHTML, no a insertInnerPages
+        innerpagesHTML(dataRace); 
 
+    } catch (error) {
+        console.error("Error al cargar las carreras desde Firestore:", error);
+        innerPages.innerHTML = '<h2>No se pudieron cargar las carreras.</h2>';
+    }
+}
+
+// 🛑 AHORA SÍ: LLAMAR A LA FUNCIÓN DE CARGA
+// Esto asume que estás dentro de document.addEventListener('DOMContentLoaded', () => { ... });
+loadRacesFromFirestore();
 
     const buttons = document.querySelectorAll('.buttonMember');
     const screen = document.querySelector('.screenImg');
@@ -319,11 +344,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const nombre = document.getElementById('nombreCarrera').value;
         const ubication = document.getElementById('ubicationCarrera').value;
         const hora = document.getElementById('timeCarrera').value; 
+        const acceso = document.getElementById('accesoCarrera').value; 
         const mensajeExito = document.getElementById('mensajeExito');
         mensajeExito.textContent = '';
 
         // Validar que todos los campos requeridos estén llenos.
-        if (!clase || !nombre || !ubication || !hora) {
+        if (!clase || !nombre || !ubication || !hora || !acceso) {
             mensajeExito.textContent = 'Por favor, completa todos los campos de la carrera.';
             return;
         }
@@ -336,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 nombre: nombre,
                 ubicacion: ubication,
                 hora: hora,
+                acceso: acceso,
                 fechaCreacion: new Date()
             });
 
@@ -346,6 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('nombreCarrera').value = '';
             document.getElementById('ubicationCarrera').value = ''; // <--- AGREGAR ESTA LIMPIEZA
             document.getElementById('timeCarrera').value = '';
+            document.getElementById('accesoCarrera').value = '';
             
             // Para limpiar el input de archivo:
             document.getElementById('imagenCarreraInput').value = ''; // <--- LIMPIAR EL INPUT FILE
