@@ -58,7 +58,6 @@
             <button class="buttonCreate" id="abrirLoginBtn">CREAR CARRERA</button>
         </div>
         <div id="loginModal">
-            <h2>Login de Administrador</h2>
             <input type="email" id="adminEmail" placeholder="Correo electrónico">
             <input type="password" id="adminPassword" placeholder="Contraseña">
             <button id="loginBtn">Logear</button>
@@ -66,7 +65,6 @@
         </div>
 
         <div id="crearCarreraModal">
-            <h2>Creador de Carrera</h2>
             <input type="text" id="claseCarrera" placeholder="Clase" list="clases-sugeridas">
             <datalist id="clases-sugeridas">
                 <option value="B1"></option>
@@ -92,6 +90,7 @@
 
             <input type="text" id="ubicationCarrera" placeholder="Calles/Anonimo">
             <input type="time" id="timeCarrera" placeholder="hora de la carrera">
+            <input type="date" id="dayCarrera" placeholder="dia de la carrera">
 
             <input type="text" id="accesoCarrera" placeholder="Acceso" list="acceso-sugeridas">
             <datalist id="acceso-sugeridas">
@@ -100,23 +99,8 @@
                 <option value="Invitacion"></option>
             </datalist>
 
-            <input type="file" accept="image/png, image/jpeg" id="imagenCarreraInput" list="imagen-sugeridas">
-            <datalist id="imagen-sugeridas">
-                <option value="img/tracks/highlands.png"></option>
-                <option value="img/tracks/extendedEbisu.png"></option>
-                <option value="img/tracks/ebisu.png"></option>
-                <option value="img/tracks/observatorio2.png"></option>
-                <option value="img/tracks/sandySprings.png"></option>
-                <option value="img/tracks/alamoRoad.png"></option>
-                <option value="img/tracks/portConection.png"></option>
-                <option value="img/tracks/burroRoad.png"></option>
-                <option value="img/tracks/gasCompany.png"></option>
-                <option value="img/tracks/banham.png"></option>
-                <option value="img/tracks/anfiteatroHills.png"></option>
-            </datalist>
-
             <button id="guardarCarreraBtn">Guardar Carrera</button>
-            <p id="mensajeExito" style="color:green;"></p>
+            <p id="mensajeExito" style="color:green;">Carrera agregada exitosamente</p>
         </div>
 
         <section class="crewSection">

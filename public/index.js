@@ -57,13 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="locateContainer">
                             ${race.ubicacion ? `<p class="locate">${race.ubicacion}</p>` : ""}
                             ${race.hora ? `<p class="time">${race.hora}</p>` : ""}
+                            ${race.day ? `<p class="day">${race.day}</p>` : ""}
                         </div>
                     </div>
                     <div class="raceFinal">
                         ${race.acceso ? `<p class="access">${race.acceso}</p>` : ""}
-                    </div>
-                    <div class="raceRight" >
-                        ${race.img ? `<img src="${race.img}" class="track" id="trackId">` : ""}
                     </div>
                 ${newTagHTML}</div>` : ""}
 
@@ -81,16 +79,12 @@ async function loadRacesFromFirestore() {
         const q = collection(db, "carreras");
         const querySnapshot = await getDocs(q);
         
-        // 3. Mapear los documentos al formato de array
         const dataRace = querySnapshot.docs.map(doc => ({
             id: doc.id, 
             ...doc.data() 
         }));
 
-        console.log("Datos recibidos de Firestore:", dataRace);
-        
-        // 4. Llama a la función de renderizado con los datos obtenidos
-        // 🛑 CORRECCIÓN: Llamamos a innerpagesHTML, no a insertInnerPages
+
         innerpagesHTML(dataRace); 
 
     } catch (error) {
@@ -99,8 +93,6 @@ async function loadRacesFromFirestore() {
     }
 }
 
-// 🛑 AHORA SÍ: LLAMAR A LA FUNCIÓN DE CARGA
-// Esto asume que estás dentro de document.addEventListener('DOMContentLoaded', () => { ... });
 loadRacesFromFirestore();
 
     const buttons = document.querySelectorAll('.buttonMember');
@@ -285,20 +277,17 @@ loadRacesFromFirestore();
     const mensajeError = document.getElementById('mensajeError');
 
     abrirLoginBtn.addEventListener('click', () => {
-        loginModal.style.display = 'block';
-        crearCarreraModal.style.display = 'none'; // Asegúrate de que el otro esté oculto
+        loginModal.style.display = 'flex';
+        crearCarreraModal.style.display = 'none';
         mensajeError.textContent = '';
     });
 
     loginBtn.addEventListener('click', async () => {
-        // ESTA PARTE ES FUNDAMENTAL Y DEBÍA FALTARTE:
         const email = document.getElementById('adminEmail').value;
         const password = document.getElementById('adminPassword').value;
         const mensajeError = document.getElementById('mensajeError'); 
         mensajeError.textContent = '';
-        // FIN PARTE FUNDAMENTAL
         loginModal.style.display = 'none';
-        // Mostrar modal de Creación de Carrera
         crearCarreraModal.style.display = 'none';
 
         try {
@@ -310,45 +299,42 @@ loadRacesFromFirestore();
             const adminDoc = await getDoc(adminDocRef);
 
             if (adminDoc.exists() && adminDoc.data().isAdmin === true) {
-            // ✅ VERIFICACIÓN EXITOSA: Es un administrador
-            
-            // Muestra el modal de Creación de Carrera
-            crearCarreraModal.style.display = 'block';
-            // Opcional: Mostrar mensaje de bienvenida y mantener el estado
+
+            crearCarreraModal.style.display = 'flex';
+
             mensajeError.textContent = `Bienvenido Admin: ${user.email}`;
             console.log("Admin logueado y autorizado.");
             
             } else {
-                // ❌ VERIFICACIÓN FALLIDA: No es administrador (o no tiene el rol)
-                
-                // Cerrar sesión inmediatamente por seguridad si no es admin
+
                 await signOut(auth);
                 
-                // Mostrar error y el modal de login de nuevo
+
                 crearCarreraModal.style.display = 'none';
                 mensajeError.textContent = `Acceso Denegado: Credenciales válidas, pero no autorizado como administrador.`;
-                loginModal.style.display = 'block'; // Volver a mostrar el modal de login
+                loginModal.style.display = 'flex';
             }
             
-            // ... (resto de la lógica de verificación de admin) ...
+
         } catch (error) {
             mensajeError.textContent = `Error de Login: ${error.message}`;
-            loginModal.style.display = 'block';
+            loginModal.style.display = 'flex';
         }
     });
 
 
     guardarCarreraBtn.addEventListener('click', async () => {
-        // Obtención de valores del DOM (está bien)
+
         const clase = document.getElementById('claseCarrera').value;
         const nombre = document.getElementById('nombreCarrera').value;
         const ubication = document.getElementById('ubicationCarrera').value;
         const hora = document.getElementById('timeCarrera').value; 
+        const day = document.getElementById('dayCarrera').value; 
         const acceso = document.getElementById('accesoCarrera').value; 
         const mensajeExito = document.getElementById('mensajeExito');
         mensajeExito.textContent = '';
 
-        // Validar que todos los campos requeridos estén llenos.
+
         if (!clase || !nombre || !ubication || !hora || !acceso) {
             mensajeExito.textContent = 'Por favor, completa todos los campos de la carrera.';
             return;
@@ -362,22 +348,23 @@ loadRacesFromFirestore();
                 nombre: nombre,
                 ubicacion: ubication,
                 hora: hora,
+                day: day,
                 acceso: acceso,
                 fechaCreacion: new Date()
             });
 
             mensajeExito.textContent = `Carrera "${nombre}" guardada con éxito! 🎉`;
             
-            // CORRECCIÓN: Limpiar TODOS los campos de texto
+
             document.getElementById('claseCarrera').value = '';
             document.getElementById('nombreCarrera').value = '';
-            document.getElementById('ubicationCarrera').value = ''; // <--- AGREGAR ESTA LIMPIEZA
+            document.getElementById('ubicationCarrera').value = ''; 
             document.getElementById('timeCarrera').value = '';
+            document.getElementById('dayCarrera').value = '';
             document.getElementById('accesoCarrera').value = '';
-            
-            // Para limpiar el input de archivo:
-            document.getElementById('imagenCarreraInput').value = ''; // <--- LIMPIAR EL INPUT FILE
             crearCarreraModal.style.display = 'none';
+
+            loadRacesFromFirestore()
 
 
         } catch (error) {
