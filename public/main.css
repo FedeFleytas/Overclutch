@@ -311,6 +311,17 @@ li :hover{
     font-family: bebas;
 }
 
+.day {
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: bebas;
+}
+
+.day::before {
+    content: "-";
+    padding-right: 10px;
+}
+
 .time::before {
     content: "-";
     padding-right: 10px;
@@ -322,7 +333,7 @@ li :hover{
     align-items: center;
     justify-content: center;
     font-family: bebas;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .track{
@@ -342,6 +353,8 @@ li :hover{
     justify-content: center;
     align-items: center;
 }
+
+/*Create races*/
 
 .createContainer {
     display: flex;
@@ -364,6 +377,141 @@ li :hover{
     color: #000000;
     background-color: white;
 }
+
+#loginModal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 10px;
+}
+#adminEmail{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#adminPassword{
+    font-family: bebas;
+    text-align: center;
+    width: 200px;
+    font-size: 15px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#loginBtn{
+    font-family: bebas;
+    width: 100px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 0, 208);
+    border-radius: 20px;
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+    animation: lines 1s infinite alternate;
+}
+#loginBtn:hover{
+    color: #000000;
+    background-color: white;
+}
+
+
+#crearCarreraModal{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#claseCarrera{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#nombreCarrera{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#ubicationCarrera{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#timeCarrera{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#dayCarrera{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#accesoCarrera{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#imagenCarreraInput{
+    font-family: bebas;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+}
+#guardarCarreraBtn{
+    font-family: bebas;
+    width: 200px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 0, 208);
+    border-radius: 20px;
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+    animation: lines 1s infinite alternate;
+}
+#guardarCarreraBtn:hover{
+    color: #000000;
+    background-color: white;
+}
+
+.new-tag{
+    font-family: bebas;
+    font-size: 25px;
+    color: rgb(255, 0, 208);
+    filter: drop-shadow(0 0 2px rgb(195, 0, 213));
+
+}
+
+
+
 
 /*Members*/
 
@@ -584,13 +732,4 @@ li :hover{
 @keyframes bounce {
     0%, 100% { height: 5px; }
     50% { height: 25px; }
-}
-
-
-#loginModal {
-    display: none;
-}
-
-#crearCarreraModal{
-    display: none;
 }
